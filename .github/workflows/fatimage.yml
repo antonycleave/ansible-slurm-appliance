@@ -32,7 +32,7 @@ jobs:
       - name: Setup ssh
         run: |
           set -x
-          mkdir ~/.ssh
+          mkdir -p ~/.ssh
           echo "${{ secrets[format('{0}_SSH_KEY', vars.CI_CLOUD)] }}" > ~/.ssh/id_rsa
           chmod 0600 ~/.ssh/id_rsa
         shell: bash
