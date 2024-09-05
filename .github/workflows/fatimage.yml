@@ -92,7 +92,7 @@ jobs:
           sudo apt -y install libguestfs-tools
 
       - name: mkdir for mount
-        run: sudo mkdir -p './${{ steps.manifest.outputs.image-name }}'
+        run: mkdir -p './${{ steps.manifest.outputs.image-name }}'
 
       - name: mount qcow2 file
         run: sudo guestmount -a ${{ steps.manifest.outputs.image-name }}.qcow2 -i --ro -o allow_other './${{ steps.manifest.outputs.image-name }}'
@@ -123,3 +123,6 @@ jobs:
           exit-code: '1'
           severity: 'CRITICAL'
           ignore-unfixed: true
+      
+      - name: Unmount image directory
+        run: sudo guestunmount './${{ steps.manifest.outputs.image-name }}'
