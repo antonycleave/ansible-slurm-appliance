@@ -18,5 +18,7 @@ echo "Setting PKR_VAR_repo_root to $PKR_VAR_repo_root"
 if [ -f "$APPLIANCES_ENVIRONMENT_ROOT/ansible.cfg" ]; then
    export ANSIBLE_CONFIG=$APPLIANCES_ENVIRONMENT_ROOT/ansible.cfg
 fi
-
+if [ -f "$HOME/vault_pw" ]; then
+  export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/vault_pw
+fi
 
