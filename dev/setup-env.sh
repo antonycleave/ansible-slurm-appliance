@@ -17,7 +17,7 @@ PYTHON_VERSION=""
 if [[ "$OS" == "ubuntu" && "$MAJOR_VERSION" == "22" ]]; then
     PYTHON_VERSION="/usr/bin/python3.10"
 elif [[ "$OS" == "rocky" && "$MAJOR_VERSION" == "8" ]]; then
-    PYTHON_VERSION="/usr/bin/python3.8" # use `sudo yum install python38` on Rocky Linux 8 to install this
+    PYTHON_VERSION="/usr/bin/python3.11" # use `sudo yum install python3.11` on Rocky Linux 8 to install this
 elif [[ "$OS" == "rocky" && "$MAJOR_VERSION" == "9" ]]; then
     PYTHON_VERSION="/usr/bin/python3.9"
 else
@@ -25,11 +25,11 @@ else
     exit 1
 fi
 
-if [[ ! -d "venv" ]]; then
+if [[ ! -d "$HOME/venv/test" ]]; then
     $PYTHON_VERSION -m venv venv
 fi
 
-. venv/bin/activate
+. $HOME/venv/test/bin/activate
 pip install -U pip
 pip install -r requirements.txt
 ansible --version
